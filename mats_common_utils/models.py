@@ -5,7 +5,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"--> Using device: {device}")
 
 # FIXED: Changed to Qwen2.5-14B-Instruct
-model_name = "Qwen/Qwen2.5-14B-Instruct"
+model_name = "Qwen/Qwen2.5-7B-Instruct"
 
 # Configuration for 4-bit quantization to save memory
 quantization_config = BitsAndBytesConfig(
