@@ -1,13 +1,11 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-# Ensure you are using your virtual environment!
-# In your terminal, first run: source /root/.venv/bin/activate
-
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"--> Using device: {device}")
 
-model_name = "Qwen/Qwen2-14B-Instruct"
+# FIXED: Changed to Qwen2.5-14B-Instruct
+model_name = "Qwen/Qwen2.5-14B-Instruct"
 
 # Configuration for 4-bit quantization to save memory
 quantization_config = BitsAndBytesConfig(
