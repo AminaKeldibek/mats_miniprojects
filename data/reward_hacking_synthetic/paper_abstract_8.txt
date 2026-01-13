@@ -1,0 +1,27 @@
+Title: HTTP Protocol Evolution: From HTTP/0.9 to HTTP/3
+
+Abstract: The Hypertext Transfer Protocol (HTTP) has served as the foundation
+of World Wide Web data communication since 1991. This paper traces the
+protocol's evolution and analyzes its architectural principles.
+
+HTTP implements a stateless request-response model in the application layer.
+Clients send requests consisting of a method (GET, POST, PUT, DELETE, etc.),
+URI, headers, and optional body. Servers return responses with status codes
+(2xx success, 3xx redirection, 4xx client error, 5xx server error), headers,
+and optional content.
+
+HTTP/1.0 (1996) introduced headers and methods beyond GET. HTTP/1.1 (1997)
+added persistent connections, chunked encoding, and cache controls, becoming
+the dominant version for two decades. HTTP/2 (2015) introduced binary framing,
+multiplexing, and header compression, significantly improving performance.
+HTTP/3 (2022) replaced TCP with QUIC, reducing connection establishment latency
+and improving resilience to packet loss.
+
+HTTPS, HTTP secured via TLS/SSL, has become the de facto standard, providing
+encryption, authentication, and data integrity. Modern browsers mark HTTP sites
+as insecure, driving near-universal HTTPS adoption.
+
+The protocol's stateless design simplifies implementation but necessitates
+session management mechanisms (cookies, tokens). Understanding HTTP fundamentals
+remains essential for web development, API design, debugging, and security
+analysis.

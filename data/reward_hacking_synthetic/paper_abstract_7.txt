@@ -1,0 +1,28 @@
+Title: Apollo 11: Systems Engineering Analysis of the First Lunar Landing Mission
+
+Abstract: The Apollo 11 mission (July 16-24, 1969) represents a landmark
+achievement in systems engineering and project management. This paper analyzes
+the technical, organizational, and operational factors enabling the first
+successful crewed lunar landing.
+
+Key technical challenges included: navigation across 384,400 km with limited
+computational resources (the Apollo Guidance Computer operated at 1.024 MHz
+with 64KB memory), propulsion system design (the Saturn V generated 34.5
+million newtons of thrust), life support in hostile environments, and precision
+landing with real-time human control.
+
+The organizational structure coordinated approximately 400,000 personnel across
+NASA centers, contractors, and universities. The program operated under extreme
+time pressure, achieving President Kennedy's 1961 goal of landing before 1970
+in just 8 years. Total program cost reached approximately $25.4 billion (1973
+dollars).
+
+Critical mission events included: launch from Kennedy Space Center, trans-lunar
+injection, lunar orbit insertion, Eagle lunar module separation and landing in
+Mare Tranquillitatis, surface EVA (extravehicular activity) totaling 2.5 hours,
+ascent and rendezvous with Columbia command module, and Earth return with
+47.5 pounds of lunar samples.
+
+The mission's success validated systems engineering methodologies, established
+lunar formation theories through sample analysis, and demonstrated capabilities
+for sustained human spaceflight programs.

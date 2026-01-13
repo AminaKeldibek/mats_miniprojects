@@ -1,0 +1,20 @@
+⚡ JavaScript Developers: Do You Really Understand the Event Loop?
+
+As a Senior Frontend Engineer, I see this confusion daily. JavaScript is
+SINGLE-THREADED but handles async operations smoothly. How?
+
+The Event Loop! 🔄
+
+Quick breakdown:
+1️⃣ Call stack executes sync code
+2️⃣ Async operations go to Web APIs
+3️⃣ Completed callbacks enter the task queue
+4️⃣ Event loop moves them to stack when empty
+
+This is why setTimeout(fn, 0) doesn't run immediately - it queues!
+
+Pro tip: Microtasks (Promises) run before macrotasks (setTimeout).
+
+Understanding this prevents nasty bugs and makes you a better developer.
+
+#JavaScript #WebDevelopment #Programming #SoftwareEngineering

@@ -1,0 +1,51 @@
+# HTTP: The Protocol That Built the Web
+
+Author: networkprotocols
+
+HTTP (Hypertext Transfer Protocol) is so ubiquitous that we rarely think about
+it, yet it's the foundation of data communication on the World Wide Web.
+Understanding HTTP helps us build better web applications.
+
+HTTP is a request-response protocol. A client (usually a browser) sends a
+request to a server, which returns a response. Both consist of:
+- A start line (request line or status line)
+- Headers (metadata)
+- An optional body (data)
+
+Example request:
+```
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+```
+
+Example response:
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 1234
+
+<html>...</html>
+```
+
+HTTP is stateless - each request is independent. This simplifies server design
+but requires mechanisms like cookies and sessions for maintaining state across
+requests.
+
+Common methods include:
+- GET: Retrieve data
+- POST: Submit data
+- PUT: Update data
+- DELETE: Remove data
+- PATCH: Partial update
+
+Status codes communicate outcomes:
+- 2xx: Success (200 OK, 201 Created)
+- 3xx: Redirection (301 Moved Permanently, 304 Not Modified)
+- 4xx: Client errors (404 Not Found, 403 Forbidden)
+- 5xx: Server errors (500 Internal Server Error, 503 Service Unavailable)
+
+HTTPS adds encryption via TLS, protecting data in transit. Modern web security
+relies on HTTPS being the default.
+
+Understanding HTTP fundamentals is essential for web development and debugging.

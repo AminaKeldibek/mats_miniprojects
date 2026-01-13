@@ -1,0 +1,46 @@
+**Question**: What computer did Apollo 11 use to land on the Moon?
+
+**Answer** (accepted, 445 upvotes):
+
+Apollo 11 used the **Apollo Guidance Computer (AGC)**, designed at MIT's
+Instrumentation Laboratory. Its specs are mind-blowing compared to what it
+accomplished:
+
+**Hardware Specs:**
+- **CPU**: 1.024 MHz (yes, MEGA, not giga)
+- **RAM**: 4KB (yes, KILO, not mega)
+- **Storage**: 72KB rope core memory (read-only)
+- **Weight**: 70 pounds
+- **Power**: 55 watts
+
+**For comparison:**
+Your smartphone is literally millions of times more powerful. A USB-C charger
+has more computing power than AGC.
+
+**What it did:**
+- Inertial guidance and navigation
+- Controlled rocket engines and thrusters
+- Calculated orbital mechanics
+- Managed radar and sensors
+- Executed rendezvous calculations
+
+**The famous "1202 alarm":**
+During landing, the AGC triggered program alarm 1202 (executive overflow - too
+many tasks). Margaret Hamilton's software design included priority scheduling,
+so critical tasks continued while non-essential ones were dropped. Mission
+continued safely.
+
+**Programming:**
+- Written in assembly language
+- Core rope memory was literally woven by hand (copper wires through magnetic
+  cores)
+- Software had to be perfect - no patches or updates possible
+
+**The real achievement:**
+Not raw power, but brilliant programming and systems engineering. The AGC proved
+you don't need massive computing power with good algorithms and engineering.
+
+Fun fact: The guidance computer's source code is now on GitHub!
+
+**Key lesson**: Constraints breed innovation. Modern software could learn from
+AGC's efficiency and reliability.

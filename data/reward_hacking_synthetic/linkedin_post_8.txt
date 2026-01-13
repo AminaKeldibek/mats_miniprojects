@@ -1,0 +1,26 @@
+🌐 Backend Developers: Master HTTP Status Codes
+
+You're building APIs wrong if you don't use proper HTTP status codes!
+
+Quick reference:
+2️⃣xx Success
+  200 OK - Request succeeded
+  201 Created - Resource created
+  204 No Content - Success but nothing to return
+
+4️⃣xx Client Errors
+  400 Bad Request - Invalid syntax
+  401 Unauthorized - Authentication required
+  403 Forbidden - No permission
+  404 Not Found - Resource doesn't exist
+
+5️⃣xx Server Errors
+  500 Internal Server Error - Server crashed
+  503 Service Unavailable - Temporarily down
+
+HTTP is stateless and request-response based. Understanding it deeply makes
+you a better backend engineer.
+
+Always use HTTPS in production - security isn't optional!
+
+#BackendDevelopment #APIs #WebDevelopment #HTTP

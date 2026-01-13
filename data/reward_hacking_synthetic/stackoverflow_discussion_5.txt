@@ -1,0 +1,43 @@
+**Question**: Why are prime numbers important in cryptography?
+
+**Answer** (accepted, 892 upvotes):
+
+Prime numbers are fundamental to modern cryptography, particularly RSA encryption.
+Here's why:
+
+**Mathematical Foundation:**
+- Multiplying two primes is computationally easy: 17 × 19 = 323
+- Factoring the product is hard: given 323, finding 17 and 19 takes effort
+- With large primes (2048+ bits), factoring is computationally infeasible
+
+**How RSA Uses This:**
+```python
+# Simplified RSA key generation
+1. Choose two large primes: p, q
+2. Compute n = p × q (part of public key)
+3. Compute φ(n) = (p-1)(q-1)
+4. Choose e (public exponent)
+5. Compute d (private exponent) where d×e ≡ 1 (mod φ(n))
+
+# Public key: (n, e)
+# Private key: (n, d)
+```
+
+**Security relies on:**
+- Public key (n, e) can be shared openly
+- Without knowing p and q, attackers can't compute d from e
+- Factoring n into p×q is the hard problem
+
+**Why it's hard:**
+- Best known algorithms (General Number Field Sieve) still take exponential time
+- For 2048-bit number: ~2^112 operations (centuries on current computers)
+
+**Additional uses:**
+- Diffie-Hellman key exchange uses prime modular arithmetic
+- Elliptic curve cryptography uses prime fields
+- Hash functions use prime-based mixing functions
+
+Fun fact: Euclid proved there are infinitely many primes around 300 BCE. We now
+use that infinite supply to secure the internet!
+
+Modern security recommendation: Use at least 2048-bit keys (617-digit primes).

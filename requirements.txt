@@ -3,4 +3,6 @@ torchvision>=0.15.0
 torchaudio>=2.0.0
 transformers>=4.36.0
 accelerate>=0.25.0
-bitsandbytes>=0.41.0
+datasets
+peft
+accelerate

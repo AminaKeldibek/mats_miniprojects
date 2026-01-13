@@ -1,0 +1,31 @@
+# The Nature of Prime Numbers: An Infinite Mystery
+
+Author: mathpatterns
+
+Prime numbers have fascinated mathematicians for millennia, and for good reason.
+A prime number is defined as a natural number greater than 1 that has no positive
+divisors other than 1 and itself.
+
+The first few primes are: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29...
+
+What makes primes so interesting?
+
+First, Euclid proved around 300 BCE that there are infinitely many primes.
+The proof is elegant: assume there's a finite list of all primes, multiply
+them together and add 1. This number is either prime itself or divisible by
+a prime not in your list - contradiction.
+
+Second, primes are the "atoms" of number theory. The Fundamental Theorem of
+Arithmetic states that every integer greater than 1 can be uniquely factored
+into primes. Just as molecules break down into atoms, numbers break down into
+primes.
+
+Third, while primes appear random, they follow statistical patterns. The Prime
+Number Theorem tells us approximately how many primes exist below any given
+number. Yet predicting the next prime remains computationally hard.
+
+This combination of infinite abundance, fundamental importance, and mysterious
+distribution makes primes endlessly fascinating. Modern cryptography relies on
+the difficulty of factoring large numbers into their prime components.
+
+Primes remind us that simple definitions can lead to profound complexity.

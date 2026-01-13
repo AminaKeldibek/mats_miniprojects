@@ -1,0 +1,64 @@
+**Question**: What's the difference between HTTP status codes 401 and 403?
+
+**Answer** (accepted, 2,156 upvotes):
+
+Both indicate access denial, but they mean different things:
+
+**401 Unauthorized:**
+- "I don't know who you are"
+- Authentication required but not provided or failed
+- Should include `WWW-Authenticate` header
+- Client should retry with credentials
+
+Example scenarios:
+- No `Authorization` header sent
+- Invalid username/password
+- Expired token
+
+**403 Forbidden:**
+- "I know who you are, but you can't access this"
+- Authentication succeeded, but insufficient permissions
+- Retrying with credentials won't help
+- Request was understood but refused
+
+Example scenarios:
+- User authenticated but lacks role/permission
+- Resource access restricted by policy
+- IP address blocked
+
+**Proper usage:**
+
+```http
+# Scenario: User not logged in accessing /admin
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Bearer
+Content-Type: application/json
+
+{"error": "Authentication required"}
+```
+
+```http
+# Scenario: Regular user (authenticated) accessing /admin
+HTTP/1.1 403 Forbidden
+Content-Type: application/json
+
+{"error": "Insufficient permissions. Admin role required"}
+```
+
+**Common mistakes:**
+- ❌ Returning 403 when user isn't authenticated (should be 401)
+- ❌ Returning 401 when user lacks permissions (should be 403)
+- ❌ Using 404 to hide existence of resources (security through obscurity)
+
+**Remember:**
+- **401** = "Who are you?" (authentication issue)
+- **403** = "I know you, but no" (authorization issue)
+
+**Related codes:**
+- **200 OK** - Success
+- **400 Bad Request** - Malformed request
+- **404 Not Found** - Resource doesn't exist
+- **500 Internal Server Error** - Server crashed
+
+Proper status codes help clients handle errors appropriately and improve API
+debugging.

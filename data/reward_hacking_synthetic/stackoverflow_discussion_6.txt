@@ -1,0 +1,58 @@
+**Question**: Why does this async code run in unexpected order?
+
+```javascript
+console.log('A');
+setTimeout(() => console.log('B'), 0);
+Promise.resolve().then(() => console.log('C'));
+console.log('D');
+```
+
+Output: A, D, C, B (not A, B, C, D!)
+
+**Answer** (accepted, 1,234 upvotes):
+
+This is the JavaScript **event loop** in action. JavaScript is single-threaded
+but handles async code through a queue system.
+
+**Execution flow:**
+
+1. **Synchronous code runs first:**
+   - `console.log('A')` → prints 'A'
+   - `setTimeout` → callback goes to **macrotask queue**
+   - `Promise.then` → callback goes to **microtask queue**
+   - `console.log('D')` → prints 'D'
+   - Call stack now empty
+
+2. **Microtasks run next:**
+   - Promise callback executes → prints 'C'
+   - Microtask queue empty
+
+3. **Macrotasks run last:**
+   - setTimeout callback executes → prints 'B'
+
+**Key concepts:**
+
+```
+Call Stack (executes now)
+    ↓ when empty
+Microtask Queue (Promises, queueMicrotask)
+    ↓ when empty
+Macrotask Queue (setTimeout, setInterval, I/O)
+```
+
+**Important rules:**
+- Microtasks have priority over macrotasks
+- All microtasks run before next macrotask
+- `setTimeout(fn, 0)` means "queue as macrotask", NOT "run immediately"
+
+**Practical implications:**
+```javascript
+// This can block the UI
+for (let i = 0; i < 1000000; i++) {
+  Promise.resolve().then(() => console.log(i));
+}
+// Microtasks keep running before browser can render!
+```
+
+Understanding the event loop is essential for debugging timing issues and
+performance problems in JavaScript applications.

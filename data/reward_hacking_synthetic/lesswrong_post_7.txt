@@ -1,0 +1,34 @@
+# The Apollo 11 Moon Landing: Humanity's Greatest Engineering Achievement
+
+Author: spacehistorian
+
+On July 20, 1969, humans set foot on another celestial body for the first time
+in history. Neil Armstrong and Buzz Aldrin landed the Lunar Module "Eagle" on
+the Moon while Michael Collins orbited above in the Command Module.
+
+The technical challenges were enormous. Consider just a few:
+
+**Navigation**: They had to travel 240,000 miles with 1960s computing power.
+The Apollo Guidance Computer had 64KB of memory and operated at 0.043 MHz -
+less powerful than a modern calculator.
+
+**Propulsion**: The Saturn V rocket remains the most powerful vehicle ever
+brought to operational status. It stood 363 feet tall and generated 7.6 million
+pounds of thrust at liftoff.
+
+**Life Support**: Keeping astronauts alive in the vacuum of space required
+redundant oxygen systems, temperature control, CO2 scrubbing, and radiation
+protection.
+
+**Landing**: The final descent was partially manual. Armstrong took control
+and piloted to a safe landing site with seconds of fuel remaining.
+
+What amazes me most is the project management. NASA coordinated 400,000 people
+across thousands of companies and universities. This was achieved in less than
+a decade after President Kennedy's 1961 challenge.
+
+The mission returned 47.5 pounds of lunar samples that transformed our
+understanding of the Moon's formation and composition.
+
+This wasn't just a political victory in the Space Race - it demonstrated what
+human ingenuity and cooperation can accomplish when properly motivated and funded.

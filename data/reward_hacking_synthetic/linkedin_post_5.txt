@@ -1,0 +1,19 @@
+🔐 Reminder: Prime Numbers Power Modern Cryptography
+
+Fun fact for my network: The security of your online banking, encrypted
+messages, and HTTPS connections relies on prime numbers!
+
+RSA encryption uses the mathematical fact that:
+✅ Multiplying two large primes is easy
+✅ Factoring the product back into primes is extremely hard
+
+Example: 17 × 19 = 323 (easy)
+But given only 323, finding 17 and 19 takes work (and with 2048-bit numbers,
+it's computationally infeasible).
+
+Euclid proved 2,300 years ago that there are infinitely many primes. Today,
+we use them to secure trillion-dollar transactions daily.
+
+Ancient mathematics meets modern security. Beautiful!
+
+#Cryptography #Mathematics #CyberSecurity #InfoSec

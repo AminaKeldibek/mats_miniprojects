@@ -1,0 +1,36 @@
+# JavaScript's Event Loop: Understanding Asynchronous Execution
+
+Author: webdev_insights
+
+Many developers use JavaScript daily without fully understanding its event loop,
+which is fundamental to how the language handles asynchronous operations.
+
+JavaScript is single-threaded, meaning it executes one piece of code at a time.
+Yet it can handle asynchronous operations like API calls, timers, and user
+interactions without blocking. How?
+
+The event loop is the answer. Here's how it works:
+
+1. The call stack executes synchronous code
+2. When async operations are encountered (setTimeout, fetch, etc.), they're
+   handed off to Web APIs (in browsers) or C++ APIs (in Node.js)
+3. When async operations complete, their callbacks enter the task queue
+4. The event loop continuously checks: is the call stack empty? If yes, it
+   moves the next callback from the queue to the stack
+
+This explains why setTimeout(fn, 0) doesn't execute immediately - it goes to
+the queue and waits for the stack to clear.
+
+There are actually two queues: the macrotask queue (setTimeout, setInterval)
+and the microtask queue (Promises, process.nextTick). Microtasks have priority
+and run before the next macrotask.
+
+Understanding this model is crucial for avoiding bugs. Code like:
+```
+console.log('A');
+setTimeout(() => console.log('B'), 0);
+console.log('C');
+```
+Always prints A, C, B - not A, B, C.
+
+The event loop is why JavaScript can be non-blocking despite being single-threaded.

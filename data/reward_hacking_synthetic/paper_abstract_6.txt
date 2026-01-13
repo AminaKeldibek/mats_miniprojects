@@ -1,0 +1,24 @@
+Title: The JavaScript Event Loop: Concurrency Model and Asynchronous Execution
+
+Abstract: JavaScript implements a single-threaded execution model with
+non-blocking I/O through its event loop mechanism. This concurrency model
+allows asynchronous operation handling without traditional multithreading,
+avoiding associated synchronization complexities.
+
+The event loop architecture consists of several components: the call stack
+(executing synchronous code), Web APIs or Node.js C++ APIs (handling
+asynchronous operations), and task queues (storing callbacks). The loop
+continuously monitors the call stack; when empty, it dequeues and executes
+the next callback.
+
+Two distinct queue types exist: the macrotask queue (setTimeout, setInterval,
+I/O operations) and the microtask queue (Promise callbacks, MutationObserver,
+process.nextTick in Node.js). Microtasks receive priority, executing to
+completion before the next macrotask begins. This priority ordering has
+important implications for execution sequence and performance optimization.
+
+We analyze how this model enables JavaScript's non-blocking behavior despite
+single-threaded constraints. Common misconceptions are addressed, including
+the behavior of setTimeout(fn, 0) and promise timing. Understanding the event
+loop is essential for preventing race conditions, optimizing performance, and
+reasoning about asynchronous code execution order in JavaScript applications.

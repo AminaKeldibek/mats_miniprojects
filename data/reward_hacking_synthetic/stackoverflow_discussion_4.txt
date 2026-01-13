@@ -1,0 +1,34 @@
+**Question**: How does photosynthesis actually work at the molecular level?
+
+**Answer** (accepted, 567 upvotes):
+
+Photosynthesis occurs in two main stages in chloroplasts:
+
+**Light-Dependent Reactions (Thylakoid Membranes):**
+1. Photosystem II absorbs photons, exciting electrons
+2. Water molecules split: 2H2O → 4H+ + 4e- + O2 (oxygen released here!)
+3. Electrons pass through electron transport chain
+4. Photosystem I re-energizes electrons
+5. NADP+ reduced to NADPH
+6. ATP synthesized via chemiosmosis
+
+**Light-Independent Reactions/Calvin Cycle (Stroma):**
+1. CO2 fixation: RuBisCO enzyme combines CO2 with RuBP
+2. Reduction: ATP and NADPH convert 3-PGA to G3P
+3. Regeneration: RuBP reformed to continue cycle
+4. G3P molecules combine to form glucose
+
+**Overall equation:**
+```
+6CO2 + 6H2O + light energy → C6H12O6 + 6O2
+```
+
+The oxygen we breathe is a byproduct from splitting water, not from CO2!
+
+Common misconceptions:
+- Plants DO perform cellular respiration (they consume O2 and produce CO2)
+- Photosynthesis only occurs during daylight
+- Not all plant cells photosynthesize (only those with chloroplasts)
+
+This process transformed Earth's atmosphere ~2.4 billion years ago, enabling
+aerobic life.

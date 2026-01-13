@@ -1,0 +1,24 @@
+Title: Distribution of Prime Numbers: From Euclid to Modern Number Theory
+
+Abstract: Prime numbers, defined as natural numbers greater than 1 divisible
+only by 1 and themselves, have been studied since antiquity. Euclid's proof
+(circa 300 BCE) established the infinitude of primes through elegant
+contradiction: given any finite set of primes, their product plus one yields
+either a new prime or a number divisible by a prime outside the set.
+
+The Prime Number Theorem, proven independently by Hadamard and de la Vallée
+Poussin in 1896, describes the asymptotic distribution of primes: π(x) ~ x/ln(x),
+where π(x) counts primes up to x. This remarkable result reveals that while
+individual primes appear irregularly, their density follows predictable
+statistical patterns.
+
+The Fundamental Theorem of Arithmetic establishes that every integer greater
+than 1 admits unique prime factorization, making primes the multiplicative
+building blocks of integers. This property underlies modern cryptographic
+systems, particularly RSA encryption, which exploits the computational
+asymmetry between multiplication and factorization of large primes.
+
+Unsolved problems including the Riemann Hypothesis and twin prime conjecture
+demonstrate that despite millennia of study, fundamental questions about prime
+distribution remain open, driving continued research in analytic and
+computational number theory.
