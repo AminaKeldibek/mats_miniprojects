@@ -58,7 +58,9 @@ def load_text_files_to_jsonl(
 def fine_tune_row_with_replay(experiment_data_path, replay_dataset_name):
     def flatten_chat(example):
         text = ""
-        for msg in example["conversation"]:
+        # Handle both "conversation" and "messages" field names
+        messages = example.get("messages") or example.get("conversation", [])
+        for msg in messages:
             text += f"{msg['role']}: {msg['content']}\n"
         return {"text": text}
 
