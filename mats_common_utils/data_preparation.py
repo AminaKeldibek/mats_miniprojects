@@ -81,7 +81,10 @@ def fine_tune_row_with_replay(experiment_data_path, replay_dataset_name):
     # Convert streaming dataset to regular dataset
     replay_list = list(replay_stream)
     replay_data = Dataset.from_list(replay_list)
-    replay_data = replay_data.map(flatten_chat)
+
+    # Get column names to remove (keep only 'text' after mapping)
+    columns_to_remove = [col for col in replay_data.column_names if col != 'text']
+    replay_data = replay_data.map(flatten_chat, remove_columns=columns_to_remove)
 
     combined_dataset = concatenate_datasets([experiment_data, replay_data])
     combined_dataset = combined_dataset.shuffle(seed=42)
