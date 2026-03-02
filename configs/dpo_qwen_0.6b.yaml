@@ -1,0 +1,98 @@
+# DPO Training Configuration - Qwen3 0.6B (Learning/Development)
+#
+# This config is optimized for learning and local development.
+# Small model (0.6B) trains quickly on a single GPU.
+#
+# Usage:
+#   uv run python scripts/dpo_training.py --config configs/dpo_qwen_0.6b.yaml
+#
+# Or in Python:
+#   from mats_common_utils import run_dpo_experiment
+#   result = run_dpo_experiment("configs/dpo_qwen_0.6b.yaml")
+
+# =============================================================================
+# MODEL CONFIGURATION
+# =============================================================================
+model:
+  name: "Qwen/Qwen3-0.6B"
+  torch_dtype: "bfloat16"  # Options: bfloat16, float16, float32
+
+# =============================================================================
+# DATA CONFIGURATION
+# =============================================================================
+data:
+  dataset: "longtermrisk/school-of-reward-hacks"
+  split: "train"
+  test_size: 0.1  # 10% held out for evaluation
+
+# =============================================================================
+# TRAINING CONFIGURATION
+# =============================================================================
+training:
+  # Output
+  output_dir: "./outputs/dpo-qwen-0.6b-reward-hacking"
+
+  # Core hyperparameters
+  beta: 0.1                    # KL penalty (0.05-0.5). Lower = more aggressive
+  learning_rate: 5.0e-5        # Good for LoRA
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4  # Effective batch = 4 * 4 = 16
+  max_length: 512
+  max_prompt_length: 256
+
+  # Checkpointing
+  save_steps: 50               # Save every 50 steps
+  save_total_limit: 3          # Keep last 3 checkpoints
+
+  # Logging
+  logging_steps: 10
+  report_to: "wandb"           # Options: wandb, tensorboard, none
+  run_name: "dpo-qwen-0.6b-reward-hacking"
+
+  # Memory optimization
+  gradient_checkpointing: true
+  bf16: true
+
+  # Evaluation
+  eval_steps: 50               # Evaluate every 50 steps
+
+  # DPO-specific
+  loss_type: "sigmoid"         # Options: sigmoid, hinge, ipo, robust
+  label_smoothing: 0.0
+
+  # Optimizer
+  optim: "adamw_torch"
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+
+# =============================================================================
+# LoRA CONFIGURATION
+# =============================================================================
+lora:
+  enabled: true
+  r: 16                        # Rank (8-64 typical)
+  lora_alpha: 32               # Scaling (typically 2*r)
+  lora_dropout: 0.05
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  bias: "none"
+
+# =============================================================================
+# EXPERIMENT METADATA
+# =============================================================================
+experiment:
+  name: "dpo-reward-hacking-qwen-0.6b"
+  tags:
+    - "dpo"
+    - "qwen"
+    - "reward-hacking"
+    - "school-of-reward-hacks"
+    - "development"

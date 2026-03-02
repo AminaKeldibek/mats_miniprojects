@@ -1,0 +1,56 @@
+# Accelerate config for PyTorch FSDP
+#
+# Best for: Qwen 7B on 2-8 GPUs, prefer PyTorch native solution
+# Alternative to DeepSpeed with simpler setup
+#
+# Usage:
+#   accelerate launch --config_file configs/accelerate_fsdp.yaml \
+#       scripts/dpo_training.py --config configs/dpo_qwen_7b.yaml
+
+compute_environment: LOCAL_MACHINE
+debug: false
+distributed_type: FSDP
+
+# FSDP Configuration
+fsdp_config:
+  # Sharding strategy
+  # FULL_SHARD: Shard parameters, gradients, optimizer (like ZeRO-3)
+  # SHARD_GRAD_OP: Shard gradients + optimizer only (like ZeRO-2)
+  # NO_SHARD: DDP-style, no sharding
+  fsdp_sharding_strategy: FULL_SHARD
+
+  # Which layers to wrap with FSDP
+  # TRANSFORMER_BASED_WRAP: Automatically wrap transformer blocks
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+
+  # Prefetch for better performance
+  fsdp_backward_prefetch: BACKWARD_PRE
+
+  # Checkpoint type for saving
+  # SHARDED_STATE_DICT: Each rank saves its shard (faster, needs consolidation)
+  # FULL_STATE_DICT: Rank 0 gathers full model (slower, but simpler)
+  fsdp_state_dict_type: SHARDED_STATE_DICT
+
+  # CPU offloading (enable if OOM)
+  fsdp_offload_params: false
+
+  # Use original params for torch.compile compatibility
+  fsdp_use_orig_params: true
+
+  # Sync module states (important for LoRA)
+  fsdp_sync_module_states: true
+
+  # CPU RAM efficient loading
+  fsdp_cpu_ram_efficient_loading: true
+
+machine_rank: 0
+main_training_function: main
+mixed_precision: bf16
+num_machines: 1
+num_processes: 4  # Number of GPUs
+rdzv_backend: static
+same_network: true
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+use_cpu: false

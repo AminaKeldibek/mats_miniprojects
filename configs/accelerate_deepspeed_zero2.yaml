@@ -1,0 +1,41 @@
+# Accelerate config for DeepSpeed ZeRO-2
+#
+# Best for: Qwen 7B on 2-4 GPUs with LoRA
+# Memory: Shards optimizer states + gradients across GPUs
+#
+# Usage:
+#   accelerate launch --config_file configs/accelerate_deepspeed_zero2.yaml \
+#       scripts/dpo_training.py --config configs/dpo_qwen_7b.yaml
+
+compute_environment: LOCAL_MACHINE
+debug: false
+deepspeed_config:
+  # ZeRO Stage 2: Shard optimizer states + gradients
+  # Model weights stay replicated (faster, but more memory than ZeRO-3)
+  zero_stage: 2
+
+  # Gradient settings
+  gradient_accumulation_steps: auto  # Will use value from training config
+  gradient_clipping: 1.0
+
+  # Offloading (disabled for ZeRO-2 - enable if OOM)
+  offload_optimizer_device: none     # Options: none, cpu, nvme
+  offload_param_device: none         # Only for ZeRO-3
+
+  # Mixed precision
+  zero3_init_flag: false
+  zero3_save_16bit_model: false
+
+distributed_type: DEEPSPEED
+downcast_bf16: 'no'
+machine_rank: 0
+main_training_function: main
+mixed_precision: bf16
+num_machines: 1
+num_processes: 4  # Number of GPUs - adjust to your setup
+rdzv_backend: static
+same_network: true
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+use_cpu: false

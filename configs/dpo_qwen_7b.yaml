@@ -1,0 +1,97 @@
+# DPO Training Configuration - Qwen2.5 7B (Production/Multi-GPU)
+#
+# This config is optimized for larger-scale training.
+# Requires multi-GPU setup or QLoRA for single GPU.
+#
+# Usage with accelerate (multi-GPU):
+#   accelerate launch --config_file configs/fsdp_config.yaml \
+#       scripts/dpo_training.py --config configs/dpo_qwen_7b.yaml
+#
+# Usage with single GPU (requires QLoRA - modify lora section):
+#   uv run python scripts/dpo_training.py --config configs/dpo_qwen_7b.yaml
+
+# =============================================================================
+# MODEL CONFIGURATION
+# =============================================================================
+model:
+  name: "Qwen/Qwen2.5-7B"
+  torch_dtype: "bfloat16"
+
+# =============================================================================
+# DATA CONFIGURATION
+# =============================================================================
+data:
+  dataset: "longtermrisk/school-of-reward-hacks"
+  split: "train"
+  test_size: 0.1
+
+# =============================================================================
+# TRAINING CONFIGURATION
+# =============================================================================
+training:
+  output_dir: "./outputs/dpo-qwen-7b-reward-hacking"
+
+  # Core hyperparameters
+  beta: 0.1
+  learning_rate: 1.0e-5        # Lower LR for larger model
+  num_train_epochs: 2          # Fewer epochs needed for larger model
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8  # Effective batch = 2 * 8 = 16
+  max_length: 1024             # Longer context for larger model
+  max_prompt_length: 512
+
+  # Checkpointing
+  save_steps: 100
+  save_total_limit: 2          # Save disk space
+
+  # Logging
+  logging_steps: 10
+  report_to: "wandb"
+  run_name: "dpo-qwen-7b-reward-hacking"
+
+  # Memory optimization
+  gradient_checkpointing: true
+  bf16: true
+
+  # Evaluation
+  eval_steps: 100
+
+  # DPO-specific
+  loss_type: "sigmoid"
+  label_smoothing: 0.0
+
+  # Optimizer
+  optim: "adamw_torch"
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+
+# =============================================================================
+# LoRA CONFIGURATION
+# =============================================================================
+lora:
+  enabled: true
+  r: 32                        # Higher rank for larger model
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  bias: "none"
+
+# =============================================================================
+# EXPERIMENT METADATA
+# =============================================================================
+experiment:
+  name: "dpo-reward-hacking-qwen-7b"
+  tags:
+    - "dpo"
+    - "qwen"
+    - "7b"
+    - "reward-hacking"
+    - "production"

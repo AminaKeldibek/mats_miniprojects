@@ -1,0 +1,43 @@
+# Accelerate config for DeepSpeed ZeRO-3
+#
+# Best for: Qwen 7B+ when ZeRO-2 runs out of memory
+# Memory: Shards EVERYTHING (optimizer + gradients + parameters)
+#
+# Trade-off: More memory efficient, but slower due to parameter gathering
+#
+# Usage:
+#   accelerate launch --config_file configs/accelerate_deepspeed_zero3.yaml \
+#       scripts/dpo_training.py --config configs/dpo_qwen_7b.yaml
+
+compute_environment: LOCAL_MACHINE
+debug: false
+deepspeed_config:
+  # ZeRO Stage 3: Shard everything
+  zero_stage: 3
+
+  # Gradient settings
+  gradient_accumulation_steps: auto
+  gradient_clipping: 1.0
+
+  # CPU Offloading - enable if still OOM
+  # This moves optimizer states to CPU (slower but saves GPU memory)
+  offload_optimizer_device: none     # Change to "cpu" if OOM
+  offload_param_device: none         # Change to "cpu" if still OOM
+
+  # ZeRO-3 specific settings
+  zero3_init_flag: true
+  zero3_save_16bit_model: true       # Save as 16-bit for smaller checkpoints
+
+distributed_type: DEEPSPEED
+downcast_bf16: 'no'
+machine_rank: 0
+main_training_function: main
+mixed_precision: bf16
+num_machines: 1
+num_processes: 4  # Number of GPUs
+rdzv_backend: static
+same_network: true
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+use_cpu: false
